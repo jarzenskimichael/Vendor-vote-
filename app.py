@@ -62,7 +62,7 @@ def vote():
  if not v: abort(404)
  if setting("voting_open","1")!="1": body='<section class=panel><h1>Voting is closed</h1><p>Thanks for joining us!</p></section>'
  elif already: body='<section class=panel><h1>Vote already received</h1><p>This browser has already submitted a vote. Thanks for participating!</p></section>'
- else: body=f"""<section class=panel><div class=brand>YOUR VOTE</div><h1>Best of the market.</h1><p>You're voting for:</p><div class=vendor>{v["name"]}</div><p>This is the overall winner contest. Your vote cannot be changed after submission.</p><form method=post action=/cast><input type=hidden name=vendor value="{v["slug"]}"><label style="display:flex;gap:10px;align-items:flex-start;margin:16px 0"><input style="width:auto" type=checkbox required> I confirm this is my one vote for the contest.</label><button>Submit my vote</button></form></section>"""
+ else: body=f"""<section class=panel><div class=brand>YOUR VOTE</div><h1>Best of the market.</h1><p>You're voting for:</p><div class=vendor>{v["name"]}</div><p>Your vote cannot be changed after submission.</p><form method=post action=/cast><input type=hidden name=vendor value="{v["slug"]}"><label style="display:flex;gap:10px;align-items:flex-start;margin:16px 0"><input style="width:auto" type=checkbox required> I confirm this is my one vote for the contest.</label><button>Submit my vote</button></form></section>"""
  return page("Vote",body)
 @app.route("/cast",methods=["POST"])
 def cast():
